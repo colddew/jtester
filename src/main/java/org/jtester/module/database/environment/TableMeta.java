@@ -14,20 +14,23 @@ public class TableMeta {
 	Map<String, ColumnMeta> columns;
 
 	public TableMeta(String table, ResultSetMetaData meta, DBEnvironment dbEnvironment) throws Exception {
+		
 		this.tableName = table;
 		this.columns = new HashMap<String, ColumnMeta>();
-		int count = meta.getColumnCount();
-		for (int index = 1; index <= count; index++) {
+		
+		for (int index = 1; index <= meta.getColumnCount(); index++) {
 			ColumnMeta columnMeta = new ColumnMeta();
-
+			
 			columnMeta.columnName = meta.getColumnName(index);
 			columnMeta.size = meta.getColumnDisplaySize(index);
 			columnMeta.typeName = meta.getColumnTypeName(index);
 			columnMeta.isNullable = meta.isNullable(index) == 1;
-
+			
 			columnMeta.javaType = meta.getColumnClassName(index);// dbEnvironment.getJavaClass(columnMeta.typeName);
-
-			this.columns.put(columnMeta.columnName, columnMeta);
+			
+			if(!dbEnvironment.isfilterMetaDataNeeded(columnMeta.typeName)) {
+				this.columns.put(columnMeta.columnName, columnMeta);
+			}
 		}
 	}
 

@@ -190,4 +190,14 @@ public class SqlServerEnvironment extends AbstractDBEnvironment {
 	public String getFieldQuato() {
 		return "";
 	}
+	
+	@Override
+	public boolean isfilterMetaDataNeeded(String typeName) {
+		
+		if(null != typeName && typeName.toLowerCase().contains("identity")) {
+			return true;
+		}
+		
+		return false;
+	}
 }

@@ -190,4 +190,12 @@ public interface DBEnvironment {
 	 * @return
 	 */
 	String getFieldQuato();
+	
+	/**
+	 * 过滤不需要设置默认值的字段
+	 * 
+	 * @param typeName		字段类型名称
+	 * @return
+	 */
+	boolean isfilterMetaDataNeeded(String typeName);
 }

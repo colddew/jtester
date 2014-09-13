@@ -1,13 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
+  	
   	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jtester</groupId>
 	<artifactId>jtester</artifactId>
-	<version>1.1.8</version>
+	<version>1.1.9</version>
 	<packaging>jar</packaging>
 	<name>jtester core</name>
-
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+  	
 	<dependencies>
 		<dependency>
 			<groupId>org.testng</groupId>
@@ -77,21 +81,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.1.107</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2.0.3.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -100,8 +92,24 @@
 			<version>2.4</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.25</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>jdbc.oracle</artifactId>
+			<version>10.2.0.3.0</version>
+		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<outputDirectory>target/classes</outputDirectory>
@@ -109,39 +117,55 @@
 			<resource>
 				<directory>src/main/resources</directory>
 			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.css</include>
+				</includes>
+			</resource>
 		</resources>
-
+		
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
+				<version>3.1</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 					<encoding>utf-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.2</version>
-				<!-- <configuration> -->
-				<!-- <archive> -->
-				<!-- <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile> -->
-				<!-- </archive> -->
-				<!-- </configuration> -->
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>2.3</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
+						<phase>package</phase>
 						<goals>
-							<goal>jar</goal>
+							<goal>jar-no-fork</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>test-release</id>
+			<name>nexus 3rd repo</name>
+			<url>http://192.168.199.7:8888/nexus/content/repositories/third</url>
+		</repository>
+	</distributionManagement>
 </project>

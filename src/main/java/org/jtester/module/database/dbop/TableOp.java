@@ -19,7 +19,8 @@ import org.jtester.utility.StringHelper;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class TableOp implements ITableOp {
-	private static final long serialVersionUID = -5859213164627788602L;
+	
+	public static final long serialVersionUID = -5859213164627788602L;
 
 	private String table;
 

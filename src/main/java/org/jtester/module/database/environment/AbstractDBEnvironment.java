@@ -320,4 +320,9 @@ public abstract class AbstractDBEnvironment implements DBEnvironment {
 			return input;
 		}
 	}
+	
+	@Override
+	public boolean isfilterMetaDataNeeded(String typeName) {
+		return false;
+	}
 }

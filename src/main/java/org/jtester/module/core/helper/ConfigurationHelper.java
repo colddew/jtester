@@ -290,7 +290,7 @@ public class ConfigurationHelper implements ConfigurationConst {
 	}
 
 	/**
-	 * 除非显示的声明了database.istest=false，否则jtester认为只能连接测试库
+	 * 除非显示的声明了database.only.testdb.allowing=false，否则jtester认为只能连接测试库
 	 * 
 	 * @return
 	 */

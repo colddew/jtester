@@ -200,4 +200,23 @@ public class SqlServerEnvironment extends AbstractDBEnvironment {
 		
 		return false;
 	}
+	
+	@Override
+	public void resetPrimaryKey(String table) {
+		
+		PreparedStatement st = null;
+		try {
+//			String statement = String.format("truncate %s ", table);
+//			String statement = String.format("delete from %s ", table);
+//			st = createStatementWithBoundFixtureSymbols(statement);
+//			st.execute();
+			st = createStatementWithBoundFixtureSymbols("dbcc checkident(" + table + ", reseed, 0)");
+			st.execute();
+		} catch (Throwable e) {
+			throw new RuntimeException(e);
+		} finally {
+			DBHelper.closeStatement(st);
+			st = null;
+		}
+	}
 }

@@ -41,6 +41,16 @@ public class TableOp implements ITableOp {
 			IN_DB_OPERATOR.set(false);
 		}
 	}
+	
+	public ITableOp resetPrimaryKey() {
+		IN_DB_OPERATOR.set(true);
+		try {
+			SqlRunner.resetPrimaryKey(table);
+			return this;
+		} finally {
+			IN_DB_OPERATOR.set(false);
+		}
+	}
 
 	public void commit() {
 		IN_DB_OPERATOR.set(true);

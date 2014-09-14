@@ -45,6 +45,16 @@ public class SqlRunner {
 			throw ExceptionWrapper.getUndeclaredThrowableExceptionCaused(e);
 		}
 	}
+	
+	public static void resetPrimaryKey(String table) {
+		try {
+			DBEnvironment environment = DBEnvironmentFactory.getCurrentDBEnvironment();
+			environment.connectIfNeeded();
+			environment.resetPrimaryKey(table);
+		} catch (Exception e) {
+			throw ExceptionWrapper.getUndeclaredThrowableExceptionCaused(e);
+		}
+	}
 
 	/**
 	 * 执行sql语句

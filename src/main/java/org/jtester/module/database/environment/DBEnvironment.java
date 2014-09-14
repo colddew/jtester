@@ -198,4 +198,9 @@ public interface DBEnvironment {
 	 * @return
 	 */
 	boolean isfilterMetaDataNeeded(String typeName);
+	
+	/**
+	 * 重置主键
+	 */
+	void resetPrimaryKey(String table);
 }

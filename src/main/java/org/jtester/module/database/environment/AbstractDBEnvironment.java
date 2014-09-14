@@ -325,4 +325,9 @@ public abstract class AbstractDBEnvironment implements DBEnvironment {
 	public boolean isfilterMetaDataNeeded(String typeName) {
 		return false;
 	}
+	
+	@Override
+	public void resetPrimaryKey(String table) {
+		
+	}
 }

@@ -15,6 +15,11 @@ public interface ITableOp {
 	ITableOp clean();
 
 	/**
+	 * 重置主键
+	 */
+	ITableOp resetPrimaryKey();
+	
+	/**
 	 * 根据json插入数据
 	 * 
 	 * @param json

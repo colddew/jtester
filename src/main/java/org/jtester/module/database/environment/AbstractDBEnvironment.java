@@ -330,4 +330,9 @@ public abstract class AbstractDBEnvironment implements DBEnvironment {
 	public void resetPrimaryKey(String table) {
 		
 	}
+	
+	@Override
+	public String preExecute(String table, String sql) {
+		return sql;
+	}
 }

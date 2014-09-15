@@ -201,12 +201,12 @@ public class SqlServerEnvironment extends AbstractDBEnvironment {
 		return false;
 	}
 	
+	// 重置主键前需要先清空表
 	@Override
 	public void resetPrimaryKey(String table) {
 		
 		PreparedStatement st = null;
 		try {
-//			String statement = String.format("truncate %s ", table);
 //			String statement = String.format("delete from %s ", table);
 //			st = createStatementWithBoundFixtureSymbols(statement);
 //			st.execute();
@@ -218,5 +218,21 @@ public class SqlServerEnvironment extends AbstractDBEnvironment {
 			DBHelper.closeStatement(st);
 			st = null;
 		}
+	}
+	
+	@Override
+	public String preExecute(String table, String sql) {
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("SET IDENTITY_INSERT ");
+		sb.append(table);
+		sb.append(" ON;");
+		sb.append(sql);
+		sb.append(";");
+		sb.append("SET IDENTITY_INSERT ");
+		sb.append(table);
+		sb.append(" OFF;");
+		
+		return sb.toString();
 	}
 }

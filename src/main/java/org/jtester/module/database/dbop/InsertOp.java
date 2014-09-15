@@ -42,7 +42,7 @@ public class InsertOp {
 
 		tableMeta.fillData(this.data, dbEnvironment);
 		String sql = getInsertCommandText();
-		PreparedStatement statement = connection.prepareStatement(sql);
+		PreparedStatement statement = connection.prepareStatement(dbEnvironment.preExecute(table, sql));
 
 		statement.clearParameters();
 		int index = 1;

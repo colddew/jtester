@@ -28,9 +28,7 @@ public class TableMeta {
 			
 			columnMeta.javaType = meta.getColumnClassName(index);// dbEnvironment.getJavaClass(columnMeta.typeName);
 			
-			if(!dbEnvironment.isfilterMetaDataNeeded(columnMeta.typeName)) {
-				this.columns.put(columnMeta.columnName, columnMeta);
-			}
+			this.columns.put(columnMeta.columnName, columnMeta);
 		}
 	}
 

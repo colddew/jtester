@@ -201,6 +201,15 @@ public interface DBEnvironment {
 	
 	/**
 	 * 重置主键
+	 * 
 	 */
 	void resetPrimaryKey(String table);
+	
+	/**
+	 * 准备执行脚本
+	 * @param table		表名
+	 * @param sql		待执行脚本
+	 * @return
+	 */
+	public String preExecute(String table, String sql);
 }

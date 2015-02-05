@@ -3,11 +3,6 @@ jtester
 
 base on jtester 1.1.8
 
-notice
-=======
-
-need to compile by jdk 6.0, not support jdk 7.0
-
 v 1.1.9
 =======
 
@@ -16,3 +11,8 @@ v 1.1.9
 - fix sqlserver identity bug
 - add reset primary key support
 - add sqlserver self-define primary key support
+
+v 1.1.10
+=======
+
+- add jdk1.7 support

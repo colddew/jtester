@@ -5,8 +5,10 @@ import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -182,6 +184,14 @@ public class JTesterDataSource implements DataSource {
 
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {
 		throw new RuntimeException("unimplement");
+	}
+
+	/**
+	 * @since JDK 1.7
+	 */
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		
+		return null;
 	}
 
 	// /**

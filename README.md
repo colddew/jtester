@@ -1,7 +1,7 @@
 jtester
 =======
 
-base on jtester 1.1.8
+unit test framework based on jtester 1.1.8
 
 v 1.1.9
 =======
